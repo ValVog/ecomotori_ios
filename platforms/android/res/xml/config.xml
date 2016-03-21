@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.playsrl.fuels" version="0.0.1" versionCode="7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="android-package" value="org.apache.cordova.devicemotion.AccelListener" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="Compass">
+        <param name="android-package" value="org.apache.cordova.deviceorientation.CompassListener" />
+    </feature>
+    <allow-intent href="market:*" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <name>FuelsMaps</name>
+    <description>
+        Un applicazione per la gestione degli indirizzi e delle mappe.
+    </description>
+    <author email="valerio.vogogna@playsrl.com" href="http://playsrl.com">
+        Play Srl Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="content:///*" />
+    <access origin="http://app.ecomotori.net" />
+    <allow-navigation href="data:*" />
+    <allow-navigation href="*://*.googleapis.com/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <icon src="res/android/icon.jpg" />
+    <icon density="ldpi" gap:platform="android" src="res/android/icon-36-ldpi.png" />
+    <icon density="mdpi" gap:platform="android" src="res/android/icon-48-mdpi.png" />
+    <icon density="hdpi" gap:platform="android" src="res/android/icon-72-hdpi.png" />
+    <icon density="xhdpi" gap:platform="android" src="res/android/icon-96-xhdpi.png" />
+    <preference name="orientation" value="portrait" />
+</widget>

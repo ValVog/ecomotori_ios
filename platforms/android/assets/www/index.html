@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Fuels Maps</title>
+        <meta http-equiv="Content-Security-Policy" content="
+                    default-src 'self' data: gap: 'unsafe-eval' http://www.ecomotori.net;
+                    script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com https://ssl.gstatic.com http://app.ecomotori.net;
+                    style-src 'self' 'unsafe-inline' data: https://fonts.googleapis.com;
+                    img-src 'self' data: gap: https://*.gstatic.com https://*.googleapis.com http://www.ecomotori.net blob: http://192.168.56.1:3000;
+                    font-src  https://fonts.gstatic.com;
+                    media-src *;
+                    object-src 'self';
+                    connect-src ws://192.168.56.1:3000 http://192.168.56.1:3000"
+        >
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <!-- CSS LINK -->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="lib/jquery/mobile/jquery.mobile.min.css">
+    </head>
+    <body>
+        <div data-role="page" class="page">
+            <div data-role="panel" id="left-panel" data-theme="a">
+                <img id="banner_pannel" src="img/banner.jpg"><br />
+                <!--<a data-role="button" id="showMap" data-id="showMap" href="#viewMap" data-icon="forward" data-iconpos="left" data-rel="back" data-theme="c">Visualizza Mappa</a>-->
+                <h4 id="firstSection" class="pannelSection">Strumenti</h4>
+                <a data-role="button" id="showNew" data-id="showNew" href="#viewNew" data-icon="none" data-iconpos="left" data-rel="page" data-theme="a" class="first_row ui-icon-nodisc">Segnala nuovo distributore<span></span></a>
+                <h4 class="pannelSection">Carburanti</h4>
+                <a data-role="button" id="showGpl" data-id="showGpl" href="#" data-icon="none" data-iconpos="left" data-rel="page" data-theme="a" class="show first_row ui-icon-nodisc">GPL<span></span></a>
+                <a data-role="button" id="showMetano" data-id="showMetano" href="#" data-icon="none" data-iconpos="left" data-rel="page" data-theme="a" class="show ui-icon-nodisc">Metano<span></span></a>
+                <a data-role="button" id="showElettriche" data-id="showElettriche" href="#" data-icon="none" data-iconpos="left" data-rel="page" data-theme="a" class="show ui-icon-nodisc">Elettriche - Beta<span></span></a>
+                <h4 class="pannelSection">Filtro</h4>
+                <a data-role="button" id="filterOpen" data-id="filterOpen" href="#" data-icon="clock" data-iconpos="left" data-rel="page" data-theme="a" class="filter first_row ui-icon-nodisc">Aperti adesso<span></span></a>
+                <a data-role="button" id="filterAutostrade" data-id="filterAutostrade" href="#" data-icon="arrow-t" data-iconpos="left" data-rel="page" data-theme="a" class="filter ui-icon-nodisc">Autostradali<span></span></a>
+                <a data-role="button" id="noFilter" data-id="noFilter" href="#" data-icon="location" data-iconpos="left" data-rel="page" data-theme="a" class="filter ui-icon-nodisc">Tutti<span></span></a>
+                <a data-role="button" id="about" data-id="about" href="#about" data-icon="carat-r" data-iconpos="right" data-rel="page" data-theme="a">About ecomotori.net</a>
+                <!--<a data-role="button" id="close_menu" data-id="close_menu" href="#" data-icon="delete" data-iconpos="left" data-rel="close" data-theme="c">Close</a>-->
+            </div><!-- /panel -->
+
+            <div data-role="header" class="header" data-theme="c">
+                <h1 class="map_page"></h1>
+                <h1 class="list_page"></h1>
+                <h1 class="new_page"></h1>
+                <h1 class="edit_page"></h1>
+                <h1 class="info_page"></h1>
+                <div class="btn_header map_page">
+                    <a id="showMenu" href="#left-panel">Visualizza Men&ugrave;</a>
+                    <a id="showList" href="#viewDati">Elenco Distributori</a>
+                    <a id="showSearch" href="#search">Cerca Distributori</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="btn_header list_page">
+                    <a class="pageBack" href="#viewMap">Torna alla Mappa</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="btn_header new_page">
+                    <a class="pageBack" href="#viewNew">Torna alla Mappa</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="btn_header edit_page">
+                    <a class="pageBack" href="#viewEdit">Torna alla Mappa</a>
+                    <div class="clear"></div>
+                </div>
+                <div class="btn_header info_page">
+                    <a class="pageBack" href="#viewInfo">Torna alla Mappa</a>
+                    <div class="clear"></div>
+                </div>
+                <!--<a id="exit" href="#app" data-icon="delete" data-iconpos="notext" data-shadow="false" data-iconshadow="false" class="ui-icon-nodisc" data-theme="c">Esci dall'app</a>-->
+            </div><!-- /header -->
+            <div class="clear"></div>
+
+            <!-- CONTENT -->
+            <!-- map_page -->
+            <div data-role="content" class="content map_page">
+                <div id="map_canvas" class="map" data-tap-disabled="true">
+                </div>
+                <div class="popup_shadow"></div>
+                <div class="popup_marker">
+                    <div class="popup_marker_content"></div>
+                </div>
+                <div class="about">
+                    <div class="about_content"></div>
+                </div>
+            </div><!-- /map_page -->
+
+            <!-- lista_dati -->
+            <div data-role="content" class="content list_page">
+                <ul id="ulViewDati" data-role="listview"></ul>
+            </div><!-- /lista_dati -->
+
+            <!-- nuovo dato -->
+            <div data-role="content" class="content new_page">
+                <!--<ul id="liViewNew" data-role="newview" data-divider-theme="d" data-inset="true"></ul>-->
+                <div id="viewNew">
+                    <div data-role="fieldcontain">
+                        <h4>Seleziona Carburanti</h4>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <select name="txtType" id="txtType" >
+                            <option value="4">GPL</option>
+                            <option value="1">Metano</option>
+                            <option value="5">Colonnina Eletrtica</option>
+                        </select>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <h4>Aggiungi Informazioni</h4>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input name="txtIndirizzo" id="txtIndirizzo" placeholder="Es. Via Roma 10, Milano" value="" type="text">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input name="txtTelefono" id="txtTelefono" placeholder="Telefono..." value="" type="text">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <h4>Aggiungi Orari</h4>
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input name="txtFeriali" id="txtFeriali" placeholder="Feriali" value="" type="text">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input name="txtPrefestivi" id="txtPrefestivi" placeholder="Prefestivi" value="" type="text">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input name="txtFestivi" id="txtFestivi" placeholder="Festivi" value="" type="text">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <input name="txtNote" id="txtNote" placeholder="Note" value="" type="text">
+                    </div>
+                    <div data-role="fieldcontain">
+                        <a id="btnSalva" data-role="button" href="#">Invia</a>
+                    </div>
+                </div>
+            </div><!-- /nuovo_dato -->
+
+            <!-- update_distributore -->
+            <div data-role="content" class="content edit_page">
+                <div id="viewEdit"></div>
+            </div><!-- /update_distributore -->
+
+            <!-- info_distributore -->
+            <div data-role="content" class="content info_page">
+                <div id="viewInfo"></div>
+            </div><!-- /info_distributore -->
+            <!-- /CONTENT -->
+        </div><!-- /page -->
+
+        <!-- JS LINK -->
+        <script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="lib/jquery/mobile/jquery.mobile.min.js"></script>
+        <script type="text/javascript" src="js/controller.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCldUyiQ6-LO1q4OkdQU7omSeXoDxT8sRw"></script>
+    </body>
+</html>

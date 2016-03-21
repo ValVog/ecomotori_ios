@@ -1,0 +1,111 @@
+- Richiesta di tutti i distributori che rispettano i filtri passati
+GET_distributori:http://app.ecomotori.net/restfull/index.php/distributori
+    GET_VARIABLE_REQUEST{
+		carburante = [ 1=>metano, 4=>gpl, 5=>colonnine elettriche ]
+		filtro_aperti = true/false
+		ricerca = testo indirizzo
+		posgps = testo pos gps "lat;lon"
+		range = numerico in km (calcolato in base allo zoom)
+		show_dist = da in risposta anche la distanza in linea d'aria rispetto alla posgps (da usare solo quando si guarda la lista e non la mappa)
+    }
+		return[
+            {
+                "iddistributore": 0,
+                "idcarburante": 0,
+                "costo": 0,
+                "valuta": "",
+                "datarilevamento": "aaaaMMggPRh:mm:ss",
+                "distanza": 0,
+                "latitudine": "0",
+                "longitudine": "0",
+                "comune": "",
+                "indirizzo": "",
+                "telefono": "",
+                "autostradale": "0",
+                "insegna": "",
+                "bandiera": "",
+                "chiuso": "0",
+                "n_colonnine": "0",
+                "n_postazioni": "0",
+                "prese_tipo1": "0",
+                "prese_tipo2": "0",
+                "prese_tipo3A": "0",
+                "prese_tipo3C": "0",
+                "prese_combo2": "0",
+                "prese_chademo": "0",
+                "prezzi": [
+                    {
+                        "idcarburante": 0,
+                        "nomecarburante": "",
+                        "costo": 0,
+                        "datarilevamento": "",
+                        "valuta": ""
+                    },
+                    ...
+                ]
+            },
+            ...
+        ]
+	
+    
+- Richiesta di un singolo Dstributore
+GET_distributore: http://app.ecomotori.net/restfull/index.php/distributore/12/1
+	http://app.ecomotori.net/restfull/index.php/distributore/STORAGE[iddistributore]/STORAGE[idcarburante]
+	
+	return{
+		"codice": "XX0000",
+		"latitudine": "0.0",
+		"longitudine": "0.0",
+		"comune": "",
+		"indirizzo": "",
+		"telefono": "",
+		"note_orario": "",
+		"insegna": "",
+		"bandiera": "",
+		"autostradale": "0",
+		"latitudine_googlestreet": "0.0",
+		"longitudine_googlestreet": "0.0",
+		"heading_googlestreet": "0.0",
+		"pitch_googlestreet": "0.0",
+		"valuta": "",
+		"n_colonnine": "0",
+		"n_postazioni": null,
+		"prese_tipo1": "0",
+		"prese_tipo2": "0",
+		"prese_tipo3A": "0",
+		"prese_tipo3C": "0",
+		"prese_combo2": "0",
+		"prese_chademo": "0",
+		"orari": {
+			"feriale": {
+				"apertura_mattutina": {
+					"ora": "00:00"
+				},
+				"chiusura_pomeridiana": {
+					"ora": "00:00"
+				}
+			},
+			"prefestivo": {
+				"apertura_mattutina": {
+					"ora": "00:00"
+				},
+				"chiusura_pomeridiana": {
+					"ora": "00:00"
+				}
+			}
+		},
+		"prezzi": [
+			{
+				"idcarburante": 0,
+				"nomecarburante": "",
+				"costo": 0.0,
+				"datarilevamento": "aaaaMMddPRhh:mm:ss",
+				"valuta": ""
+			},
+			{...}
+		],
+			"error": true/false
+	}
+     
+PUT: http://app.ecomotori.net/restfull/index.php/segnalaprezzo/12/1
+REQUEST_VARIABLE: [prezzo], [segnalatore]
