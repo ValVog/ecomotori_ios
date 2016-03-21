@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.playsrl.fuels" version="0.0.1" versionCode="7" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <preference name="AllowInlineMediaPlayback" value="false" />
+    <preference name="BackupWebStorage" value="cloud" />
+    <preference name="DisallowOverscroll" value="false" />
+    <preference name="EnableViewportScale" value="false" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="true" />
+    <preference name="MediaPlaybackRequiresUserAction" value="false" />
+    <preference name="SuppressesIncrementalRendering" value="false" />
+    <preference name="SuppressesLongPressGesture" value="false" />
+    <preference name="Suppresses3DTouchGesture" value="false" />
+    <preference name="GapBetweenPages" value="0" />
+    <preference name="PageLength" value="0" />
+    <preference name="PaginationBreakingMode" value="page" />
+    <preference name="PaginationMode" value="unpaginated" />
+    <feature name="LocalStorage">
+        <param name="ios-package" value="CDVLocalStorage" />
+    </feature>
+    <feature name="HandleOpenUrl">
+        <param name="ios-package" value="CDVHandleOpenURL" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="IntentAndNavigationFilter">
+        <param name="ios-package" value="CDVIntentAndNavigationFilter" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="GestureHandler">
+        <param name="ios-package" value="CDVGestureHandler" />
+        <param name="onload" value="true" />
+    </feature>
+    <name>FuelsMaps</name>
+    <description>
+        Un applicazione per la gestione degli indirizzi e delle mappe.
+    </description>
+    <author email="valerio.vogogna@playsrl.com" href="http://playsrl.com">
+        Play Srl Team
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <access origin="content:///*" />
+    <access origin="http://app.ecomotori.net" />
+    <allow-navigation href="data:*" />
+    <allow-navigation href="*://*.googleapis.com/*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <gap:plugin name="com.indigoway.cordova.whitelist.whitelistplugin" version="1.1.1" />
+    <gap:plugin name="org.apache.cordova.device" />
+    <icon src="res/android/icon.jpg" />
+    <icon density="ldpi" gap:platform="android" src="res/android/icon-36-ldpi.png" />
+    <icon density="mdpi" gap:platform="android" src="res/android/icon-48-mdpi.png" />
+    <icon density="hdpi" gap:platform="android" src="res/android/icon-72-hdpi.png" />
+    <icon density="xhdpi" gap:platform="android" src="res/android/icon-96-xhdpi.png" />
+    <preference name="orientation" value="portrait" />
+    <feature name="Device">
+        <param name="ios-package" value="CDVDevice" />
+    </feature>
+    <feature name="Accelerometer">
+        <param name="ios-package" value="CDVAccelerometer" />
+    </feature>
+    <feature name="Compass">
+        <param name="ios-package" value="CDVCompass" />
+    </feature>
+    <feature name="Notification">
+        <param name="ios-package" value="CDVNotification" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
+</widget>
