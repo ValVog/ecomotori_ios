@@ -45,7 +45,7 @@
     <preference value="false" name="exit-on-suspend"/>
     <preference value="true" name="show-splash-screen-spinner"/>
     <preference value="true" name="auto-hide-splash-screen"/>
-    
+
     <icon src="res/android/icon.jpg" />
     <icon src="res/android/icon-36-ldpi.png" gap:platform="android" density="ldpi" />
     <icon src="res/android/icon-48-mdpi.png" gap:platform="android" density="mdpi" />
