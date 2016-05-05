@@ -7,11 +7,11 @@
                     default-src 'self' data: gap: 'unsafe-eval' http://www.ecomotori.net;
                     script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com https://ssl.gstatic.com http://app.ecomotori.net;
                     style-src 'self' 'unsafe-inline' data: https://fonts.googleapis.com;
-                    img-src 'self' data: gap: https://*.gstatic.com https://*.googleapis.com http://www.ecomotori.net blob: http://192.168.56.1:3000;
+                    img-src 'self' data: gap: https://*.gstatic.com https://*.googleapis.com http://www.ecomotori.net blob: http://192.168.56.1:3000 http://127.0.0.1:3000;
                     font-src  https://fonts.gstatic.com;
                     media-src *;
                     object-src 'self';
-                    connect-src ws://192.168.56.1:3000 http://192.168.56.1:3000"
+                    connect-src ws://127.0.0.1:3000 http://192.168.56.1:300 http://127.0.0.1:3000"
         >
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
